@@ -19,7 +19,7 @@
       'security/ir.model.access.csv',
       'views/openacademy.xml'
     ],
-    'demo': ['demo.xml'],
+    'demo': ['demo/demo.xml'],
     'qweb': [],
     'installable': True,
     'application': True,
