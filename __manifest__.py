@@ -14,12 +14,12 @@
       """,
     'category': 'Productivity',
     'website': 'https://www.nava.com.np',
-    'depends': [''],
+    'depends': [],
     'data': [
-        'security/ir.model.access.csv'
-        
+      'security/ir.model.access.csv',
+      'views/openacademy.xml'
     ],
-    'demo': [],
+    'demo': ['demo.xml'],
     'qweb': [],
     'installable': True,
     'application': True,
