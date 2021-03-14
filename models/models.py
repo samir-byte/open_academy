@@ -13,6 +13,7 @@ class Course(models.Model):
         string='Responsible',
         index=True
         )
+    session_ids = fields.One2many('openacademy.session', 'course_id',string='Sessions')
 
 
 class Session(models.Model):
