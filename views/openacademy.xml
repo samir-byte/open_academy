@@ -9,6 +9,7 @@
                     <sheet>
                         <group>
                             <field name="name"/>
+                            <field name="responsible_id" />
         <!--                    <field name="description" />        -->
                         </group>
                         <notebook>
@@ -43,6 +44,7 @@
             <field name="arch" type="xml">
                 <tree string="">
                     <field name="name" />
+                    <field name="responsible_id" />
                     <field name="description" />
                 </tree>
             </field>
@@ -94,11 +96,13 @@
                 <form string="">
                     <sheet>
                         <group>
-                            <group>
+                            <group string="General">
+                                <field name="course_id" />
                                 <field name="name"/>
-                                <field name="start_date" />    
+                                <field name="instructor_id" />
                             </group>
-                            <group>
+                            <group string="schedule">
+                                <field name="start_date" />
                                 <field name="duration" />
                                 <field name="seats" />    
                             </group>
@@ -114,9 +118,7 @@
            <field name="arch" type="xml">
                <tree string="">
                    <field name="name" />
-                   <field name="start_date" />
-                   <field name="duration" />
-                   <field name="seats" />
+                   <field name="course_id" />
                </tree>
            </field>
        </record>
