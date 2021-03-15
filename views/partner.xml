@@ -5,14 +5,11 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
-            <!--<field name="active_lang_count" position="after">
-            <field name="instructor" />
-            </field>-->
             <notebook position="inside">
                 <page string="Sessions">
                     <group>
-                    <!--    <field name="instructor"/>   -->
-                        <field name="session_ids" />    
+                        <field name="instructor"/> 
+                        <field name="session_ids" />   
                     </group>
                 </page>
             </notebook>
