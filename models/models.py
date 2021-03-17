@@ -2,6 +2,7 @@
 from odoo import models, fields, api
 
 class Course(models.Model):
+    #name and description of course model
     _name = "openacademy.course"
     _description = "OpenAcademy Courses"
 
@@ -17,14 +18,16 @@ class Course(models.Model):
 
 
 class Session(models.Model):
+    #name and description of model
     _name = "openacademy.session"
     _description= "OpenAcademy Session"
 
+    #fields defined for session model
     name  = fields.Char(required=True)
     start_date  = fields.Date()
     duration  = fields.Float(digits=(6,2), help='duration in days')
     seats  = fields.Integer(string='Number of seats')
-    instructor_id = fields.Many2one(
+    instructor_id = fields.Many2one(#field many2one implemented 
         'res.partner',
         string='Instructor',
         )
@@ -34,11 +37,15 @@ class Session(models.Model):
         ondelete='cascade',
         required=True
         )
-    attendee_ids = fields.Many2many('res.partner', string='Attendees')
+    attendee_ids = fields.Many2many('res.partner', string='Attendees') #field many2many implemented
+    
+    #new field this depends on seats and attendee_ids field
     taken_seats  = fields.Float(string='Taken Seats', compute='_taken_seats')
 
+    #computed fields and @api.depends
     @api.depends('seats','attendee_ids')
     def _taken_seats(self):
+        #for loop to find taken seats
         for record in self:
             if not record.seats:
                 record.taken_seats=0.0
