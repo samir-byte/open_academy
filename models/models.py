@@ -24,9 +24,11 @@ class Session(models.Model):
 
     #fields defined for session model
     name  = fields.Char(required=True)
-    start_date  = fields.Date()
+    #start_date  = fields.Date()
+    start_date  = fields.Date(default=fields.Date.today()) #adding default date of current date 
     duration  = fields.Float(digits=(6,2), help='duration in days')
     seats  = fields.Integer(string='Number of seats')
+    active  = fields.Boolean(default= True)
     instructor_id = fields.Many2one(#field many2one implemented 
         'res.partner',
         string='Instructor',
