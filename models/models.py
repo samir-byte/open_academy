@@ -35,6 +35,15 @@ class Session(models.Model):
         required=True
         )
     attendee_ids = fields.Many2many('res.partner', string='Attendees')
+    taken_seats  = fields.Float(string='Taken Seats', compute='_taken_seats')
+
+    @api.depends('seats','attendee_ids')
+    def _taken_seats(self):
+        for record in self:
+            if not record.seats:
+                record.taken_seats=0.0
+            else:
+                record.taken_seats=100.0 * len(record.attendee_ids) / record.seats 
     
     
 
