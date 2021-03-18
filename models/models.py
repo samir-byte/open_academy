@@ -1,5 +1,5 @@
 
-from odoo import models, fields, api
+from odoo import exceptions, models, fields, api
 
 class Course(models.Model):
     #name and description of course model
@@ -55,7 +55,7 @@ class Session(models.Model):
                 record.taken_seats=100.0 * len(record.attendee_ids) / record.seats 
 
     #@api.onchange implemented on the fields seats and attendee_ids
-    @api.onchange('name')
+    @api.onchange('seats','attendee_ids')
     def _verify_valid_seats(self):
         
         if (self.seats < 0 ) :
@@ -72,6 +72,14 @@ class Session(models.Model):
                     'message': 'increase seats or remove access attendees',
                 }
             }
+
+
+    #model constraints @api.constraints implemented
+    @api.constrains('instructor_id','attendee_ids')
+    def _check_instructor_not_in_attendee(self):
+        for record in self:
+            if (record.instructor_id and record.instructor_id in record.attendee_ids):
+                raise exceptions.ValidationError("A session's instructor cant be an attendee")
 
     
     
