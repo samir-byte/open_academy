@@ -16,6 +16,20 @@ class Course(models.Model):
         )
     session_ids = fields.One2many('openacademy.session', 'course_id',string='Sessions')
 
+    #sql constraints 
+    _sql_constraints = [
+        (
+            'name_description_check',
+            'CHECK(name != description)',
+            'The title of course should not be the description'
+        ),
+        (
+            'name_unique',
+            'UNIQUE(name)',
+            'The course title must be unique'
+        )
+    ]
+
 
 class Session(models.Model):
     #name and description of model
@@ -74,7 +88,7 @@ class Session(models.Model):
             }
 
 
-    #model constraints @api.constraints implemented
+    #model constrains @api.constrains implemented
     @api.constrains('instructor_id','attendee_ids')
     def _check_instructor_not_in_attendee(self):
         for record in self:
