@@ -10,7 +10,7 @@
                         <group>
                             <field name="name"/>
                             <field name="responsible_id" />
-        <!--                    <field name="description" />        -->
+        <!--               <field name="description" />        -->
                         </group>
                         <notebook>
                             <page string="Description">
@@ -94,6 +94,7 @@
             <field name="name">Session</field>
             <field name="res_model">openacademy.session</field>
             <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,calendar</field>
         </record>
     
         <!--session form view-->
@@ -128,12 +129,23 @@
            <field name="name">session.tree</field>
            <field name="model">openacademy.session</field>
            <field name="arch" type="xml">
-               <tree string="Session Tree" decoration-info="duration&lt;5" decoration-danger="duration&gt;5">
+               <tree string="Session Tree" decoration-success="duration&lt;5" decoration-danger="duration&gt;5">
                    <field name="name" />
                    <field name="course_id" />
                    <field name="duration" invisible="1" />
                    <field name="taken_seats" widget="progressbar" />
                </tree>
+           </field>
+       </record>
+
+       <!--session calender view-->
+       <record id="session_calendar" model="ir.ui.view">
+           <field name="name">session.calendar</field>
+           <field name="model">openacademy.session</field>
+           <field name="arch" type="xml">
+               <calendar string="Session Calender" date_start="start_date" date_stop="date_end" color="instructor_id">
+                   <field name="name"/>
+               </calendar>
            </field>
        </record>
 

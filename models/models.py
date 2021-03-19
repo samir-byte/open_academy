@@ -1,4 +1,5 @@
 
+from datetime import timedelta
 from odoo import exceptions, models, fields, api
 
 class Course(models.Model):
@@ -57,7 +58,8 @@ class Session(models.Model):
     
     #new field this depends on seats and attendee_ids field
     taken_seats  = fields.Float(string='Taken Seats', compute='_taken_seats')
-
+    date_end  = fields.Date(string="End Date", store=True, compute='_get_end_date', inverse='_set_end_date')
+    
     #computed fields and @api.depends
     @api.depends('seats','attendee_ids')
     def _taken_seats(self):
@@ -96,6 +98,23 @@ class Session(models.Model):
                 raise exceptions.ValidationError("A session's instructor cant be an attendee")
 
     
+    #methods to get end date
+    @api.depends('start_date','duration')
+    def _get_end_date(self):
+        for record in self:
+            if not (record.start_date and record.duration):
+                record.date_end = record.start_date
+                continue
+
+            duration = timedelta(days=record.duration, seconds=-1)
+            record.date_end = record.start_date + duration
+
+    def _set_end_date(self):
+        for record in self:
+            if not(record.start_date and record.end_date):
+                continue
+
+            record.duration = (record.date_end - record.start_date).days +1
     
     
 
