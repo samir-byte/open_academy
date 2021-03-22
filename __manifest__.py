@@ -14,6 +14,7 @@
       """,
     'category': 'Productivity',
     'website': 'https://www.nava.com.np',
+    'images' : ['images/index.png'],
     'depends': [],
     'data': [
       'security/security.xml',
