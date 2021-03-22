@@ -20,7 +20,8 @@
       'security/security.xml',
       'security/ir.model.access.csv',
       'views/openacademy.xml',
-      'views/partner.xml'
+      'views/partner.xml',
+      'wizard/wizard_view.xml'
     ],
     'demo': ['demo/demo.xml'],
     'qweb': [],

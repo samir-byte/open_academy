@@ -4,5 +4,6 @@ course_manager,course manager,model_openacademy_course,group_openacademy_manager
 session_manager,session manager,model_openacademy_session,group_openacademy_manager,1,1,1,1
 course_user,course user,model_openacademy_course,group_openacademy_user,1,0,0,0
 session_user,session user,model_openacademy_session,group_openacademy_user,1,0,0,0
+access_wizard,access wizard,model_openacademy_wizard,group_openacademy_manager,1,1,1,1
 
 
