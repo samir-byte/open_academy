@@ -29,4 +29,5 @@
                   ('responsible_id','=',user.id)]
         </field>
     </record>    
+    
 </odoo>
